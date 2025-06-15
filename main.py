@@ -11,7 +11,9 @@ load_dotenv()
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
-app.mount("/static", StaticFiles(directory="static"), name="static")
+if os.path.isdir("static"):
+    app.mount("/static", StaticFiles(directory="static"), name="static")
+
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -77,3 +79,13 @@ async def analyze_gitlab(
             "request": request,
             "suggestion": f"❌ Error: {str(e)}"
         })
+
+
+@app.get("/debug-static")
+def debug_static():
+    import os
+    if os.path.exists("static"):
+        return {"exists": True, "files": os.listdir("static")}
+    else:
+        return {"exists": False, "message": "static directory not found"}
+
