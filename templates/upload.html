@@ -1,0 +1,18 @@
+<html>
+  <body>
+    <h2>BugBlamer: Upload CI Log and Git Diffs</h2>
+    <form action="/analyze" enctype="multipart/form-data" method="post">
+      <label>CI Logs:</label><br />
+      <input type="file" name="log" /><br /><br />
+      <label>Git Diffs:</label><br />
+      <input type="file" name="diff" /><br /><br />
+      <input type="submit" value="Analyze" />
+    </form>
+
+    {% if suggestion %}
+    <hr />
+    <h3>AI Root Cause Suggestion</h3>
+    <pre>{{ suggestion }}</pre>
+    {% endif %}
+  </body>
+</html>
