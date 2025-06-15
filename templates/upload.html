@@ -8,6 +8,19 @@
       <input type="file" name="diff" /><br /><br />
       <input type="submit" value="Analyze" />
     </form>
+    <form action="/analyze/gitlab" method="post">
+      <h3>Or analyze via GitLab API</h3>
+      <label for="project_id">GitLab Project ID:</label>
+      <input type="text" name="project_id" required /><br />
+
+      <label for="job_id">Failed Job ID:</label>
+      <input type="text" name="job_id" required /><br />
+
+      <label for="token">GitLab Personal Access Token:</label>
+      <input type="password" name="token" required /><br />
+
+      <button type="submit">Analyze GitLab CI Job</button>
+    </form>
 
     {% if suggestion %}
     <hr />
