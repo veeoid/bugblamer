@@ -1,12 +1,15 @@
 <html>
+  <head>
+    <link rel="stylesheet" href="/static/style.css" />
+  </head>
   <body>
     <h2>BugBlamer: Upload CI Log and Git Diffs</h2>
     <form action="/analyze" enctype="multipart/form-data" method="post">
-      <label>CI Logs:</label><br />
+      <label class="form-label">CI Logs:</label><br />
       <input type="file" name="log" /><br /><br />
-      <label>Git Diffs:</label><br />
+      <label class="form-label">Git Diffs:</label><br />
       <input type="file" name="diff" /><br /><br />
-      <input type="submit" value="Analyze" />
+      <input class="form-submit" type="submit" value="Analyze" />
     </form>
     <form action="/analyze/gitlab" method="post">
       <h3>Or analyze via GitLab API</h3>
@@ -21,11 +24,34 @@
 
       <button type="submit">Analyze GitLab CI Job</button>
     </form>
+    <div>
+      <h3>Don't have your own files? Try with our sample logs:</h3>
+      <ul>
+        <li>
+          <a
+            href="https://raw.githubusercontent.com/veeoid/bugblamer/main/sample_log.txt"
+            target="_blank"
+            >Download sample_log.txt</a
+          >
+        </li>
+        <li>
+          <a
+            href="https://raw.githubusercontent.com/veeoid/bugblamer/main/sample_diff.txt"
+            target="_blank"
+            >Download sample_diff.txt</a
+          >
+        </li>
+      </ul>
+    </div>
+    <form method="get" action="/">
+      <button type="submit">Clear Results</button>
+    </form>
 
-    {% if suggestion %}
+    <!-- Debug: Suggestion value: "{{ suggestion|default('None') }}" -->
+    {% if suggestion is not none and suggestion|string|trim != "" %}
     <hr />
     <h3>AI Root Cause Suggestion</h3>
-    <pre>{{ suggestion }}</pre>
+    <div class="suggestion-block">{{ suggestion }}</div>
     {% endif %}
   </body>
 </html>

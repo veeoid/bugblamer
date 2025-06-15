@@ -1,8 +1,37 @@
-Running tests...
-test_user_registration FAILED
+[INFO] CI Job Started: Installing dependencies...
+[INFO] Setting up test environment for user_1
+[INFO] Running tests for user_1
+[INFO] test_login passed for user_1
+[INFO] test_profile_update passed for user_1
+[INFO] test_password_reset passed for user_1
+[INFO] Setting up test environment for user_2
+[INFO] Running tests for user_2
+[INFO] test_login passed for user_2
+[INFO] test_profile_update passed for user_2
+[INFO] test_password_reset passed for user_2
+[INFO] Setting up test environment for user_3
+[INFO] Running tests for user_3
+[INFO] test_login passed for user_3
+[INFO] test_profile_update passed for user_3
+[INFO] test_password_reset passed for user_3
+[INFO] Setting up test environment for user_4
+[INFO] Running tests for user_4
+[INFO] test_login passed for user_4
+[INFO] test_profile_update passed for user_4
+[INFO] test_password_reset passed for user_4
+[INFO] Setting up test environment for user_5
+[INFO] Running tests for user_5
+[INFO] test_login passed for user_5
+[INFO] test_profile_update passed for user_5
+[INFO] test_password_reset passed for user_5
+[INFO] Running test_email_validation for user_3
+[ERROR] test_email_validation failed for user_3
 Traceback (most recent call last):
-  File "test_user.py", line 45, in test_email_validation
+  File "tests/test_user_3.py", line 56, in test_email_validation
     assert validate_email("user@@example..com")
-AssertionError: assert False
-
-Tests failed! Job exited with code 1.
+AssertionError: Invalid email format
+[INFO] Running test_email_validation for user_4
+[INFO] test_email_validation passed for user_4
+[INFO] Running test_email_validation for user_5
+[INFO] test_email_validation passed for user_5
+[INFO] CI Job Finished with 1 failure

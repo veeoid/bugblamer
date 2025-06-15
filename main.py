@@ -4,17 +4,25 @@ from dotenv import load_dotenv
 from fastapi import FastAPI, Request, File, UploadFile, Form
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
+from fastapi.staticfiles import StaticFiles
 from blame import analyze_failure
 
 load_dotenv()
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
+app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
 @app.get("/", response_class=HTMLResponse)
 async def home(request: Request):
-    return templates.TemplateResponse("upload.html", {"request": request})
+    return templates.TemplateResponse("upload.html", {
+        "request": request,
+        "suggestion": None,  # explicitly clear old suggestion
+        "log": "",
+        "diff": ""
+    })
+
 
 
 @app.post("/analyze")
